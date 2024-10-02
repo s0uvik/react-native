@@ -4,8 +4,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 40 }}>Hello world</Text>
+    <View className="flex flex-1 items-center justify-center bg-white">
+      <Text className=" text-3xl">Hello world!</Text>
       <StatusBar style="auto" />
       <Link href="/profile">Go to Profile</Link>
     </View>

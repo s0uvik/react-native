@@ -3,16 +3,8 @@ import { Text } from "react-native";
 
 const RootLayout = () => {
   return (
-    // <>
-    //   <Text>Header</Text>
-    //   <Slot />
-    //   <Text>Footer</Text>
-    // </>
     <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ headerShown: false }}
-      ></Stack.Screen>
+      <Stack.Screen name="index" options={{ headerShown: true }}></Stack.Screen>
     </Stack>
   );
 };
