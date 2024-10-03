@@ -50,7 +50,10 @@ const TabsLayout = () => {
               options={{
                 title: capItem,
                 headerShown: false,
-                tabBarIcon: ({ color, focused }) => (
+                tabBarIcon: (
+                  // tabBarIcon must be a function
+                  { color, focused }
+                ) => (
                   <TabIcon
                     icon={item === "create" ? icons.plus : icons[item]}
                     color={color}
