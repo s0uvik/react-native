@@ -4,6 +4,7 @@ import CustomButton from "./CustomButton";
 
 import { images } from "../constants";
 import { router } from "expo-router";
+import PropTypes from "prop-types";
 
 const EmptyState = ({ title, subtitle }) => {
   return (
@@ -23,6 +24,11 @@ const EmptyState = ({ title, subtitle }) => {
       />
     </View>
   );
+};
+
+EmptyState.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
 };
 
 export default EmptyState;
