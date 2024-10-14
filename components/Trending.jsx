@@ -3,12 +3,12 @@ import {
   FlatList,
   Image,
   ImageBackground,
-  Text,
   TouchableOpacity,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { icons } from "../constants";
 import { Video, ResizeMode } from "expo-av";
+import PropTypes from "prop-types";
 
 const zoomIn = {
   0: {
@@ -38,11 +38,11 @@ const TrendingItem = ({ activeItem, item }) => {
     >
       {play ? (
         <Video
-          source={{ uri: item.video }}
+          source={{ uri: "https://www.w3schools.com/html/mov_bbb.mp4" }}
           className=" w-52 h-72 rounded-[35px] my-5 bg-white/10"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
-          shouldPlay
+          shouldPlay={true}
           onPlaybackStatusUpdate={(status) => {
             if (status.didJustFinish) {
               setPlay(false);
@@ -93,6 +93,27 @@ const Trending = ({ posts }) => {
       horizontal
     />
   );
+};
+
+// Define PropTypes for Trending
+Trending.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      $id: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      video: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+// Define PropTypes for TrendingItem
+TrendingItem.propTypes = {
+  activeItem: PropTypes.string.isRequired, // Assuming $id is a string
+  item: PropTypes.shape({
+    $id: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Trending;
