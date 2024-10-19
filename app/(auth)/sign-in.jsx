@@ -31,7 +31,7 @@ const SignIn = () => {
       setUser(result);
       setIsLoggedIn(true);
 
-      router.push("/home");
+      router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
