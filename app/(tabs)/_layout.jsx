@@ -1,12 +1,13 @@
 import { Image, Text, View } from "react-native";
 import React from "react";
+import PropTypes from "prop-types";
 import { Tabs } from "expo-router";
 
 import { icons } from "../../constants";
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
-    <View className=" items-center justify-center">
+    <View className="items-center justify-center">
       <Image
         source={icon}
         resizeMode="contain"
@@ -14,7 +15,7 @@ const TabIcon = ({ icon, color, name, focused }) => {
         className="w-6 h-6"
       />
       <Text
-        className={`${focused ? " font-psemibold" : " font-pregular"} text-xs`}
+        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
         style={{ color: color }}
       >
         {name}
@@ -23,7 +24,15 @@ const TabIcon = ({ icon, color, name, focused }) => {
   );
 };
 
-const tabs = ["home", "bookmark", "create", "profile"];
+// Add PropTypes validation for TabIcon
+TabIcon.propTypes = {
+  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.number]).isRequired, // for Image source
+  color: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  focused: PropTypes.bool.isRequired,
+};
+
+const tabs = ["home", "create", "profile"];
 
 const TabsLayout = () => {
   return (
@@ -50,10 +59,7 @@ const TabsLayout = () => {
               options={{
                 title: capItem,
                 headerShown: false,
-                tabBarIcon: (
-                  // tabBarIcon must be a function
-                  { color, focused }
-                ) => (
+                tabBarIcon: ({ color, focused }) => (
                   <TabIcon
                     icon={item === "create" ? icons.plus : icons[item]}
                     color={color}
