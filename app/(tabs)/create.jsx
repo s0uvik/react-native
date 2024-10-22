@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ResizeMode, Video } from "expo-av";
-import * as DocumentPicker from "expo-document-picker";
+import * as ImagePicker from "expo-image-picker";
 
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
@@ -22,19 +22,20 @@ const Create = () => {
   const { user } = useGlobalContext();
   const [uploading, setUploading] = useState(false);
   const [form, setForm] = useState({
-    title: "",
+    title: "Test",
     video: null,
     thumbnail: null,
-    prompt: "",
+    prompt: "Test",
   });
 
   const openPicker = async (selectType) => {
-    const result = await DocumentPicker.getDocumentAsync({
-      presentationStyle: "fullScreen",
-      type:
-        selectType === "video"
-          ? ["video/mp4", "video/gif"]
-          : ["image/png", "image/jpg", "image/jpeg"],
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes:
+        selectType === "image"
+          ? ImagePicker.MediaTypeOptions.Images
+          : ImagePicker.MediaTypeOptions.Videos,
+      aspect: [4, 3],
+      quality: 1,
     });
 
     if (!result.canceled) {
@@ -61,7 +62,7 @@ const Create = () => {
       Alert.alert("Error", error.message);
     } finally {
       setUploading(false);
-      setForm({ title: "", video: null, thumbnail: null, prompt: "" });
+      // setForm({ title: "", video: null, thumbnail: null, prompt: "" });
     }
   };
   return (

@@ -40,7 +40,8 @@ const VideoCard = ({ video }) => {
       </View>
       {play ? (
         <Video
-          source={{ uri: "https://www.w3schools.com/html/mov_bbb.mp4" }}
+          // source={{ uri: "https://www.w3schools.com/html/mov_bbb.mp4" }}
+          source={{ uri: video.video }}
           className=" w-full h-60 rounded-xl my-3"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
@@ -78,6 +79,7 @@ VideoCard.propTypes = {
   video: PropTypes.shape({
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
     creator: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
